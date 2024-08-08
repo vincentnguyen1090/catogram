@@ -1,0 +1,35 @@
+.card {
+  border: none !important;
+  border-radius: 0 none !important;
+  margin-bottom: 1px;
+}
+.cus-card-img {
+  border-radius: 0 !important;
+  object-fit: cover;
+  height: 300px !important;
+  height: 100%;
+  width: 100%;
+}
+li.cus-border {
+  border-bottom: 0 none;
+}
+div.cus-border {
+  border-bottom: 0 none;
+}
+.bold-text {
+  font-weight: bold !important;
+}
+.light-text {
+  font-weight: 300 !important;
+}
+
+.cus-padding-like {
+  padding-right: 8px;
+  padding-bottom: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: grey;
+  font-weight: 400;
+}

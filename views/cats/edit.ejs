@@ -1,0 +1,91 @@
+<% layout('layouts/boilerplate') %>
+<div class="container mt-5">
+  <div class="row justify-content-md-center">
+    <h1 class="text-center">Edit</h1>
+    <div class="col-md-6 col-xl-6">
+      <form
+        class="validated-form mx-auto"
+        action="/cats/<%= cat._id %>?_method=PUT"
+        style="max-width: 500px"
+        method="POST"
+        enctype="multipart/form-data"
+        novalidate
+      >
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="name"
+            class="form-control"
+            id="name"
+            name="cat[name]"
+            value="<%= cat.name %>"
+            required
+          />
+          <div class="invalid-feedback">Please choose a name.</div>
+          <div id="emailHelp" class="form-text"></div>
+        </div>
+        <div class="mb-3">
+          <label for="breed" class="form-label">Breed</label>
+          <input
+            type="breed"
+            class="form-control"
+            id="breed"
+            name="cat[breed]"
+            value="<%= cat.breed %>"
+            required
+          />
+          <div class="invalid-feedback">Please choose its breed.</div>
+        </div>
+        <div class="mb-3">
+          <label for="Location" class="form-label">Location</label>
+          <input
+            type="Location"
+            class="form-control"
+            id="Location"
+            name="cat[location]"
+            value="<%= cat.location %>"
+            required
+          />
+          <div class="invalid-feedback">Please provide a location.</div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            name="cat[description]"
+            required
+          >
+<%= cat.description %></textarea
+          >
+          <div class="invalid-feedback">Please provide a description.</div>
+        </div>
+        <div class="mb-5">
+          <label for="formFileMultiple" class="form-label">Upload Images</label>
+          <input
+            type="file"
+            class="form-control"
+            id="formFileMultiple"
+            name="image"
+            multiple
+          />
+        </div>
+        <div class="mb-3">
+          <% cat.images.forEach((img, i) => { %>
+          <img src="<%= img.url %>" class="img-thumbnail edit-img" alt="" />
+          <div class="form-check-inline">
+            <input
+              type="checkbox"
+              id="image-<%=i%>"
+              name="deleteImages[]"
+              value="<%= img.filename %>"
+            />
+          </div>
+          <label for="image-<%=i%>">Delete</label>
+          <% }) %>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Changes</button>
+      </form>
+    </div>
+  </div>
+</div>

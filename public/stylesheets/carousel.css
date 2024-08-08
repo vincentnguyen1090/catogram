@@ -1,0 +1,15 @@
+.carousel-indicators button {
+  border-radius: 50% !important;
+  width: 5px !important;
+  height: 5px !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("/icons/arrow-right-circle.svg") !important;
+  color: white;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("/icons/arrow-left-circle.svg") !important;
+  color: white;
+}

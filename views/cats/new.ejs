@@ -1,0 +1,75 @@
+<% layout('layouts/boilerplate') %>
+<div class="container mt-5">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6 col-xl-6">
+      <form
+        class="validated-form mt-5"
+        action="/cats"
+        style="max-width: 500px"
+        method="POST"
+        enctype="multipart/form-data"
+        novalidate
+      >
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="cat[name]"
+            required
+          />
+          <div class="invalid-feedback">Please choose a name.</div>
+          <div id="emailHelp" class="form-text"></div>
+        </div>
+        <div class="mb-3">
+          <label for="breed" class="form-label">Breed</label>
+          <input
+            type="text"
+            class="form-control"
+            id="breed"
+            name="cat[breed]"
+            required
+          />
+          <div class="invalid-feedback">Please choose its breed.</div>
+        </div>
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input
+            type="text"
+            class="form-control"
+            id="location"
+            name="cat[location]"
+            required
+          />
+          <div class="invalid-feedback">Please provide a location.</div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            name="cat[description]"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Please provide a description.</div>
+        </div>
+        <div class="mb-5">
+          <label for="formFileMultiple" class="form-label">Upload Images</label>
+          <input
+            type="file"
+            class="form-control"
+            id="formFileMultiple"
+            name="image"
+            multiple
+            required
+          />
+          <div class="invalid-feedback">
+            This campground would look much better with a picture.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

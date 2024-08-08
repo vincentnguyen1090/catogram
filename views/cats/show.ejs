@@ -1,0 +1,81 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="card cus-card-show mb-3">
+  <div class="row">
+    <div class="col-6 cus-border-image image-container">
+      <div id="catIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <% if(cat.images.length > 1) { %>
+            <% cat.images.forEach((img, i) => { %>
+              <button type="button" data-bs-target="#catIndicators" data-bs-slide-to="<%= i %>" class="active" aria-current="true" aria-label="Slide <%= i + 1 %>"></button>
+            <% }) %>
+          <% } %>
+        </div>
+        <div class="carousel-inner">
+          <% cat.images.forEach((img, i) => { %>
+            <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+              <img src="<%= img.url  %>" class="d-block w-100 img-fluid fit-image" alt="">
+            </div>
+          <% }) %>
+        </div>
+        <% if(cat.images.length > 1) { %>
+        <button class="carousel-control-prev" type="button" data-bs-target="#catIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#catIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <% } %>
+      </div>
+    </div>
+    <div class="col-6 cus-border-text">
+      <div class="comment-div">
+        <h5 class="card-title cus-title-show">
+          <%= cat.name %> - <%= cat.breed %> 
+        </h5>
+        <p class="card-text cus-text-show"><%= cat.description %></p>
+        <% for (let comment of cat.comments) { %>
+        <div class="cus-comment-section">
+          <p class="text-body-secondary"><span class="fw-semibold text-dark" style="padding-right: 3px;"><%= comment.author.username %></span>  <span class="text-dark"><%= comment.body %></span></p>
+          <form
+            action="/cats/<%= cat._id %>/comments/<%= comment._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn cus-delete-show">X</button>
+          </form>
+        </div>
+        <% } %>
+        <form
+          action="/cats/<%= cat._id %>/comments"
+          method="POST"
+          class="comment validated-form"
+          style="padding: 0;"
+          novalidate
+        >
+          <p class="card-text cus-comment-input" style="display: flex; align-items: center;">
+            <input
+              type="text"
+              placeholder="Add a comment..."
+              name="comment[body]"
+              id="commentInput"
+            />
+            <button
+              type="submit"
+              class="cus-comment-button"
+              id="submitButton"
+              disabled
+            >
+              Post
+            </button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+

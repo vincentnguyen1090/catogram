@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-sm navbar-light sticky-top py-0">
+  <div class="container-fluid mb-3">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a href="/" class="navbar-brand">
+        Home
+      </a>
+      <ul id="nav" class="navbar-nav ms-auto">
+        <li class="active nav-item">
+          <a class="nav-link" href="/cats">Posts</a>
+        </li>
+
+        <% if (currentUser) { %>
+          <% if (cat && cat.author) { %>
+              <% if (cat.author._id.toString() === currentUser._id.toString() && isShowPage) { %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/cats/<%= cat._id %>/edit">Edit</a>
+                </li>
+                <li class="nav-item">
+                  <form action="/cats/<%= cat._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button class="nav-link" style="background: none; border: none; color: inherit; cursor: pointer;">Delete</button>
+                  </form>
+                </li>
+              <% } %>
+          <% } %>
+          <% } %>
+
+        <% if(!currentUser) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        <% } else {%>
+          <li class="active nav-item">
+            <a class="nav-link" href="/cats/new"><i class="bi bi-plus-square"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          <% } %>
+      </ul>
+    </div>
+</nav>
