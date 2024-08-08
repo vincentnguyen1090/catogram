@@ -59,11 +59,13 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 app.use(mongoSanitize());
 
+secret = process.env.SECRET || "whatasecret";
+
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   touchAfter: 24 * 60 * 60,
   crypto: {
-    secret: "thisshouldbeabettersecret!",
+    secret,
   },
 });
 
@@ -72,7 +74,7 @@ app.use(
   session({
     store,
     name: "session",
-    secret: "your-secret-key",
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }, // Set `secure: true` if using HTTPS
